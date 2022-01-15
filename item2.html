@@ -13,7 +13,7 @@
 <body>
     <div class="p-3">
         <!-- Button trigger modal -->
-        <button data-url="https://www.youtube.com/embed/fNJQgJBgRcs" type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal">
+        <button data-url="https://www.youtube.com/embed/fNJQgJBgRcs" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#myModal">
       Launch demo modal
     </button>
     </div>
@@ -27,7 +27,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div id="iframeContainer" class="modal-body ratio radio ratio-16x9">
-                    <iframe width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <!-- iframe 放這 -->
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"> Close </button>
@@ -39,8 +39,10 @@
 
     <script>
         document.querySelector("button").addEventListener("click", (e) => {
+
             const url = e.target.dataset.url;
-            document.querySelector("iframe").src = url;
+            const content = `<iframe width="560" height="315" src="${url}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+            document.querySelector("#iframeContainer").innerHTML = content;
 
         })
 
@@ -49,8 +51,7 @@
 
         myModalEl.addEventListener('hidden.bs.modal', function(event) {
 
-            document.querySelector("iframe").src = "";
-
+            document.querySelector("iframe").remove();
 
         })
     </script>
